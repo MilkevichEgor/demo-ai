@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: "demo-ai"
+  ai:
+    openai:
+      api-key: ...
+      chat:
+        base-url: https://generativelanguage.googleapis.com
+        completions-path: /v1beta/openai/chat/completions
+        options:
+#          model: gemini-1.5-flash
+          model: gemini-2.0-flash
+
+  #      chat:
+  #        completions-path: /v1beta/openai/chat/completions
+  #        options:
+  #          model: gemini-2.0-flash
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ...
+            provider: google
+            client-secret: ...
+            client-name: GOOGLE
+            scope:
+              - openid
+              - email
+              - profile
+              - https://www.googleapis.com/auth/calendar.readonly
+              - https://www.googleapis.com/auth/gmail.readonly
+      provider:
+        google:
+          authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+          token-uri: https://oauth2.googleapis.com/token
+          user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+      resourceserver:
+        jwt:
+          issuer-uri: "https://accounts.google.com"
